@@ -1,0 +1,12 @@
+{
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Controller\\": "controller/",
+            "Util\\": "util/"
+        }
+    },
+    "require": {
+        "psr/container": "2.0.2"
+    }
+}

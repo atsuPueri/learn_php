@@ -1,0 +1,90 @@
+@import "./color.scss";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+}
+
+header {
+    text-align: right;
+    background-color: $main_color;
+    padding: 1% 1.5%;
+
+    // ネットからの拾い物    https://saruwakakun.com/html-css/reference/buttons
+    .btn-square-shadow {
+
+        display: inline-block;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        background: #668ad8;
+        /*ボタン色*/
+        color: #FFF;
+        border-bottom: solid 4px #627295;
+        border-radius: 3px;
+    }
+
+    .btn-square-shadow:active {
+        /*ボタンを押したとき*/
+        -webkit-transform: translateY(4px);
+        transform: translateY(4px);
+        /*下に動く*/
+        box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+        /*影を小さく*/
+        border-bottom: none;
+    }
+}
+
+main {
+    height: 100%;
+    background-color: $content_color;
+
+    article {
+        display: flex;
+        flex-flow: column;
+        padding: 5px 10px;
+    
+        // ここからアコーディオン（チェックボックスが押されたら表示）を表現
+        a {
+            display: none;
+        }
+
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+        }
+
+        // 押されたら文字色を変化
+        input[type="checkbox"]:checked ~ label {
+            color: rgb(237, 150, 1);
+        }
+
+        // 三角の表示
+        label::after {
+            color: black;
+            content: "▶";
+        }
+        input[type="checkbox"]:checked ~ label::after {
+            color: black;
+            content: "▼";
+        }
+        
+        // 押されたらそこから後ろのaを表示
+        input[type="checkbox"]:checked ~ a {
+            display: block;
+        }
+    }
+}
+
+footer {
+    background-color: $content_color2;
+    padding: 1%;
+    color: $text_white_color;
+}
