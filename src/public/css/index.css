@@ -12,6 +12,7 @@ header {
   text-align: right;
   background-color: rgb(122, 134, 184);
   padding: 1% 1.5%;
+  height: 7%;
 }
 header .btn-square-shadow {
   display: inline-block;
