@@ -6,5 +6,6 @@
 
 
 return [
-    Controller\Top::class => fn() => new Controller\Top(),
+    Controller\Top::class   => fn() => new Controller\Top(),
+    Controller\Learn::class => fn() => new Controller\Learn(),
 ];
