@@ -1,15 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./public/css/learn.css">
+    <link rel="stylesheet" href="../public/css/destyle.css">
+    <link rel="stylesheet" href="../public/js/highlight/styles/a11y-dark.min.css">
+    <link rel="stylesheet" href="../public/css/learn.css">
 </head>
+
 <body>
     <main>
+        <h1><?= $title ?></h1>
+        <article id="learn_text">
+            <p><?= $message ?></p>
+        </article>
 
+        <article id="user_edit">
+            <nav id="folders">
+                <?php
+                    function view_dir ($dir_info) {
+                        static $id_count = 0;
+
+                        echo "<ul>";
+                        foreach ($dir_info as $key => $val) {
+                            
+                            if (is_array($val)) {
+                                echo "<li>";
+                                echo "<input type=\"checkbox\" id=\"folder{$id_count}\">";
+                                echo "<label for=\"folder{$id_count}\">";
+                                echo "<p>{$key}</p>";
+                                echo "</label>";
+
+                                $id_count++;
+                                (__FUNCTION__)($val);
+                                
+                                echo "</li>";
+                            } else {
+                                echo "<li class=\"file\" data-content=\"{$val}\">";
+                                echo $key;
+                                echo "</li>";
+                            }
+                        }
+                        echo "</ul>";
+                    };
+                ?>
+                <?php view_dir($dir_info) ?>
+
+            </nav>
+            <nav id="play">
+                <button><img src="../public/img/play.png"></button>
+            </nav>
+            <article id="editor">
+                <form method="get" id="editor_form">
+
+                    <pre>
+                        <code class="php" id="view_code"></code>
+                    </pre>
+
+                    <textarea id="input_code" spellcheck="false" wrap="hard" name="input"></textarea>
+                </form>
+            </article>
+
+            <section id="result">
+                <iframe src="/example.com" frameborder="0"></iframe>
+            </section>
+        </article>
     </main>
+    <script src="../public/js/highlight/highlight.min.js"></script>
+    <script src="../public/js/editor.js"></script>
 </body>
+
 </html>
