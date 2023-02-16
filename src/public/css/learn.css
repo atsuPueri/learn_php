@@ -1,0 +1,109 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+main #learn_text {
+  width: 100%;
+  border: solid 1px red;
+  padding: 25px;
+}
+main #user_edit {
+  display: grid;
+  grid-template: "folder play" 1fr "editor result" 1fr;
+  position: relative;
+  margin-top: 10px;
+  height: 50vh;
+  width: 100%;
+}
+main #user_edit #folders {
+  border: solid 1px rgb(0, 0, 0);
+  grid-area: folder;
+  padding: 5px;
+}
+main #user_edit #folders .file {
+  cursor: pointer;
+}
+main #user_edit #folders input[type=checkbox] {
+  display: none;
+}
+main #user_edit #folders input[type=checkbox] ~ ul {
+  display: none;
+}
+main #user_edit #folders input[type=checkbox]:checked ~ ul {
+  display: block;
+}
+main #user_edit #folders input[type=checkbox] ~ label p {
+  padding-left: 5px;
+}
+main #user_edit #folders input[type=checkbox] ~ label p::before {
+  display: inline-block;
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(../img/folder.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+main #user_edit #folders input[type=checkbox]:checked ~ label p::before {
+  display: inline-block;
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(../img/folder_open.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+main #user_edit #folders li {
+  margin-left: 15px;
+  list-style: none;
+}
+main #user_edit #play {
+  grid-area: play;
+  text-align: end;
+  margin-right: 16px;
+}
+main #user_edit #play img {
+  width: 32px;
+}
+main #user_edit #editor {
+  grid-area: editor;
+  position: relative;
+  margin-top: 0px;
+  height: 70vh;
+  width: 100%;
+}
+main #user_edit #editor #view_code {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  font-family: monospace;
+  letter-spacing: normal;
+  font-size: 16px;
+  line-height: 16px;
+}
+main #user_edit #editor #input_code {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0);
+  color: rgba(0, 0, 0, 0);
+  caret-color: rgb(214, 187, 187);
+  padding: 0.9em;
+  font-family: monospace;
+  letter-spacing: normal;
+  font-size: 16px;
+  line-height: 16px;
+  resize: none;
+}
+main #user_edit #result {
+  grid-area: result;
+}
+main #user_edit #result iframe {
+  background-color: tan;
+  width: 100%;
+  height: 100%;
+}/*# sourceMappingURL=learn.css.map */
