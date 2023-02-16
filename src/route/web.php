@@ -10,8 +10,9 @@ var_dump($request_path);
 echo "<br>file:" . __FILE__;
 
 return match ([$request_path, $method]) {
-    ['/',      'GET']           => [Top::class, 'show'],
-    ['/learn', 'GET']           => [Learn::class, 'show'],
-    ['/learn/php_basic', 'GET'] => [Learn::class, 'php_basic'],
+    ['/',      'GET']            => [Top::class, 'show'],
+    ['/learn', 'GET']            => [Learn::class, 'show'],
+    ['/learn/php_basic', 'GET']  => [Learn::class, 'php_basic'],
+    ['/learn/php_basic', 'POST'] => [Learn::class, 'php_basic_exec'],
     default => '404',
 };
