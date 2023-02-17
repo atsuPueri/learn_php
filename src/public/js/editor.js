@@ -1,7 +1,7 @@
 // 色変え動作
 window.addEventListener('load', () => {
-    const input_code = document.getElementById('input_code');
-    const view_code = document.getElementById('view_code');
+    const input_code  = document.getElementById('input_code');
+    const view_code   = document.getElementById('view_code');
     const editor_form = document.getElementById('editor_form');
 
     // 初期動作
@@ -25,13 +25,18 @@ window.addEventListener('load', () => {
 
 // ファイル選択動作
 window.addEventListener('load', () => {
-    const input_code = document.getElementById('input_code');
-    const view_code = document.getElementById('view_code');
+    const input_code  = document.getElementById('input_code');
+    const view_code   = document.getElementById('view_code');
     const editor_form = document.getElementById('editor_form');
 
     const file_HTMLColection = document.getElementsByClassName('file');
 
     for (const file_element of file_HTMLColection) {
+
+        if (get_file_path(file_element) + '/' + file_element.textContent === "/index.php") {
+            open_file(file_element);
+        }
+
         // クリックされたらinputの表示切替
         file_element.addEventListener('click', e => {
             open_file(e.target);
