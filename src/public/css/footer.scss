@@ -1,0 +1,8 @@
+@import "./color.scss";
+
+footer {
+    height: 100% - $main_size - $header_size;
+    background-color: $content_color2;
+    padding: 1%;
+    color: $text_white_color;
+}

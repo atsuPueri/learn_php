@@ -1,29 +1,3 @@
-@charset "UTF-8";
-header {
-  text-align: right;
-  background-color: rgb(122, 134, 184);
-  padding: 1% 1.5%;
-  height: 7%;
-}
-header .btn-square-shadow {
-  display: inline-block;
-  padding: 0.5em 1em;
-  text-decoration: none;
-  background: #668ad8;
-  /*ボタン色*/
-  color: #FFF;
-  border-bottom: solid 4px #627295;
-  border-radius: 3px;
-}
-header .btn-square-shadow:active {
-  /*ボタンを押したとき*/
-  transform: translateY(4px);
-  /*下に動く*/
-  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
-  /*影を小さく*/
-  border-bottom: none;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -34,7 +8,7 @@ body {
 }
 
 main {
-  height: 80%;
+  height: 85%;
   background-color: #f2f2f2;
 }
 main h1 {
@@ -79,11 +53,4 @@ main article #free {
 }
 main article #search {
   background-color: rgb(224, 236, 198);
-}
-
-footer {
-  height: 10%;
-  background-color: #333333;
-  padding: 1%;
-  color: #CCCCCC;
 }/*# sourceMappingURL=index.css.map */

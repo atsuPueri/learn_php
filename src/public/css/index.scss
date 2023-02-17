@@ -1,5 +1,4 @@
 @import "./color.scss";
-@import "./header.scss";
 
 
 * {
@@ -12,7 +11,7 @@ body {
 }
 
 main {
-    height: 80%;
+    height: $main_size;
     background-color: $content_color;
 
     h1 {
@@ -67,9 +66,3 @@ main {
 }
 
 
-footer {
-    height: 100% - 80% - 10%;
-    background-color: $content_color2;
-    padding: 1%;
-    color: $text_white_color;
-}

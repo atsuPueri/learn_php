@@ -5,8 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./public/css/destyle.css">
+    <link rel="stylesheet" href="./public/css/header.css">
+    <link rel="stylesheet" href="./public/css/learn_top.css">
+    <link rel="stylesheet" href="./public/css/footer.css">    
 </head>
 <body>
+    <?php Util\view('header.html'); ?>
     <main>
         <ul>
             <?php foreach ($learn_list as $key => $val): ?>
@@ -16,5 +21,6 @@
             <?php endforeach; ?>
         </ul>
     </main>
+    <?php Util\view('footer.html'); ?>
 </body>
 </html>
