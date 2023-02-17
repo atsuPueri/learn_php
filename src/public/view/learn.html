@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    <header><a href="login" class="btn-square-shadow">ログイン</a></header>
     <main>
         <h1><?= $title ?></h1>
         <article id="learn_text">
@@ -62,10 +63,13 @@
 
                     <textarea id="input_code" spellcheck="false" wrap="hard" name="input"></textarea>
                 </form>
+                <div id="error">
+                    ここで構文エラーが起きてます、;が抜けていないか確認しましょう
+                </div>
             </article>
 
             <section id="result">
-                <iframe src="/example.com" frameborder="0"></iframe>
+                <iframe id="result_code" src="" frameborder="0"></iframe>
             </section>
         </article>
     </main>

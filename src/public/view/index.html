@@ -6,22 +6,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TOP</title>
+    <link rel="stylesheet" href="./public/destyle.css">
     <link rel="stylesheet" href="./public/css/index.css">
 </head>
+
 <body>
     <header><a href="login" class="btn-square-shadow">ログイン</a></header>
     <main>
         <h1>タイトル</h1>
         <article>
-            <a href="learn"><img src="./public/img/study.svg">学ぶ</a>
+            <div id="learn">
+                <a href="learn">
+                    <img src="./public/img/study.svg"><br>
+                    <p>学ぶ</p>
+                </a>
+            </div>
 
-            <br>
-
-            <a href="creative"><img src="./public/img/hammer.svg">クリエイティブ</a>
-
-            <br>
-
-            <a href="search"><img src="./public/img/search.svg">他の作品を見る</a>
+            <div id="free">
+                <a href="free">
+                    <img src="./public/img/hammer.svg"><br>
+                    <p>フリーモード</p>
+                </a>
+            </div>
+            <div id="search">
+                <a href="search">
+                    <img src="./public/img/search.svg"><br>
+                    <p>他の作品を見る</p>
+                </a>
+            </div>
 
         </article>
     </main>

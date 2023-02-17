@@ -1,7 +1,12 @@
+@import "./color.scss";
+@import "./header.scss";
+
 * {
     padding: 0;
     margin: 0;
 }
+
+
 
 main {
     #learn_text {
@@ -134,14 +139,29 @@ main {
 
                 resize: none;
             }
+
+            #error {
+                display: none;
+                position: absolute;
+                top: calc(16px * 2);
+                left: 95%;
+                z-index: 0;
+
+                cursor: pointer;
+
+                width: 180px;
+                font-size: 12px;
+                background-color: rgba(255, 255, 255, 0.951);
+                border: solid 1px rgb(115, 115, 115);
+            }
         }
 
 
         #result {
             grid-area: result;
+            border: solid 1px black;
 
             iframe{
-                background-color: tan;
                 width: 100%;
                 height: 100%;
             }

@@ -1,13 +1,4 @@
 @charset "UTF-8";
-* {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  height: 100vh;
-}
-
 header {
   text-align: right;
   background-color: rgb(122, 134, 184);
@@ -33,8 +24,17 @@ header .btn-square-shadow:active {
   border-bottom: none;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+}
+
 main {
-  height: 100%;
+  height: 80%;
   background-color: #f2f2f2;
 }
 main h1 {
@@ -43,17 +43,46 @@ main h1 {
 main article {
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: space-evenly;
 }
-main article a {
+main article div {
+  width: 20%;
+  height: 60%;
+  text-align: center;
+  margin-top: 50px;
+  border: solid 1px gray;
+}
+main article div img {
+  margin-top: 40px;
+  vertical-align: bottom;
+  height: 30%;
+  padding: 1em;
+  border-radius: 100%;
+  background-color: rgb(162, 162, 162);
+}
+main article div a {
+  width: 100%;
+  height: 100%;
   display: inline-block;
   text-decoration: none;
 }
-main article a img {
-  vertical-align: bottom;
-  height: 3rem;
+main article div p {
+  margin-top: 1em;
+  font-size: 2em;
+}
+main article #learn {
+  background-color: rgb(198, 236, 234);
+}
+main article #free {
+  background-color: rgb(198, 236, 202);
+}
+main article #search {
+  background-color: rgb(224, 236, 198);
 }
 
 footer {
+  height: 10%;
   background-color: #333333;
   padding: 1%;
   color: #CCCCCC;
