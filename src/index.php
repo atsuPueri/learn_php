@@ -13,5 +13,5 @@ if ($container->has($web[0])) {
     $web[0] = $get();
     $web();
 } else {
-    echo "error";
+    header("HTTP/1.1 404 Not Found");
 }
