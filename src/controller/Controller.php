@@ -18,14 +18,12 @@ class Controller
         $check_path = "";
         foreach ($explode as $val) {
             $check_path .= $val . "/";
-
-            echo "<BR>", __DIR__ . "/" . $check_path, "<BR>";
-            if (!file_exists(__DIR__ . "/" . $check_path)) {
+            if (!file_exists($check_path)) {
                 mkdir($check_path);
             }
         }
 
-        file_put_contents(__DIR__ . $file_path, $content);
+        file_put_contents($file_path, $content);
     }
 
     protected function get_php_opcode(string $php_path): array
