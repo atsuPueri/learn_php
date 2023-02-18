@@ -90,4 +90,63 @@ class Learn extends Controller
             ],
         ]);
     }
+
+    public function require_exec()
+    {
+        $sample = [
+            __DIR__ . '/../app/learn/sample/require/index.php',
+        ];
+        $error = $this->learn_exec($sample);
+        echo json_encode($error);
+    }
+
+    public function calc()
+    {
+        $arr = require __DIR__ . '/../app/learn/message/calc.php';
+        $title   = $arr['title'];
+        $message = $arr['message'];
+        $success = $arr['success_message'];
+        $next    = $arr['next_path'];
+
+        view('learn.html', [
+            'title'      => $title,
+            'message'    => $message,
+            'success'    => $success,
+            'next'       => $next,
+            'dir_info'   => [
+                'index.php' => 
+                <<< PHP
+                <?php
+                echo 1 + 2;
+                echo 5 - 1;
+                echo 2 * 4;
+                echo 10 / 2;
+                PHP
+            ],
+        ]);
+    }
+
+    public function calc_exec()
+    {
+
+    }
+
+    public function while()
+    {
+        $arr = require __DIR__ . '/../app/learn/message/while.php';
+        $title   = $arr['title'];
+        $message = $arr['message'];
+        $success = $arr['success_message'];
+        $next    = $arr['next_path'];
+
+        view('learn.html', [
+            'title'      => $title,
+            'message'    => $message,
+            'success'    => $success,
+            'next'       => $next,
+            'dir_info'   => [
+                'index.php' => "<?php\necho 'hello world';"
+            ],
+        ]);
+    }
 }
