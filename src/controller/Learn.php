@@ -8,7 +8,14 @@ class Learn extends Controller
     public function show() {
         view('learn_top.html', [
             'learn_list' => [
-                'php_basic' => 'PHPの基本'
+                'PHPの基本を学ぼう' => [
+                    'php_basic' => 'PHPの基本',
+                    'php_while' => '繰り返し表示してみよう',
+                ],
+                'TEST' => [
+                    '0' => '小タイトル１'
+                ]
+                
             ],
         ]);
     }
@@ -39,5 +46,48 @@ class Learn extends Controller
         ];
         $error = $this->learn_exec($sample);
         echo json_encode($error);
+    }
+
+    public function require()
+    {
+        $arr = require __DIR__ . '/../app/learn/message/require.php';
+        $title   = $arr['title'];
+        $message = $arr['message'];
+        $success = $arr['success_message'];
+        $next    = $arr['next_path'];
+
+        view('learn.html', [
+            'title'      => $title,
+            'message'    => $message,
+            'success'    => $success,
+            'next'       => $next,
+            'dir_info'   => [
+                'index.php' => 
+                <<<PHP
+                <html>
+                    <?php require './head.html'; ?>
+                    <body>
+                        <h1>Hello</h1>
+                    </body>
+                </html>
+                PHP,
+
+                'head.html' =>
+                <<<HEAD
+                <head>
+                    <link rel="stylesheet" href="./css/style.css">
+                <head>
+                HEAD,
+
+                'css' => [
+                    'style.css' =>
+                    <<<CSS
+                    h1 {
+                        color: red;
+                    }
+                    CSS,
+                ]
+            ],
+        ]);
     }
 }
