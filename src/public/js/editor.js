@@ -90,6 +90,12 @@ window.addEventListener('load', () => {
                 error_element.style.top     = (error.line * 16) + 'px';
             } else {
                 error_element.style.display = 'none';
+
+                // エラーが起きずにサンプルが問題なければ
+                if (error.is_sample_ok === true) {
+                    const success = document.getElementById('success');
+                    success.style.display = 'block';
+                }
             }
         });
     });
@@ -144,6 +150,8 @@ function open_file(file) {
     input_code.value = file.dataset.content;
     input_code.dataset.now_file = get_file_path(file) + '/' + file.textContent;
     loadEditor(view_code, editor_form);
+
+    document.getElementById('play_file').textContent = input_code.dataset.now_file + 'を実行';
 }
 
 /**
