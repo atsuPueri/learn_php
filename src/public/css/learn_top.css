@@ -12,6 +12,17 @@ main {
   background-color: #f2f2f2;
   padding: 10px;
 }
-main ul li a {
-  border-bottom: 1px solid black;
+main #chapter_list .chapter_title {
+  display: inline-block;
+  border-bottom: 4px solid black;
+  margin-bottom: 10px;
+}
+main #chapter_list ul li {
+  margin-top: 1.2em;
+}
+main #chapter_list ul li a {
+  padding: 0.5em 2em;
+  width: 100%;
+  height: 100%;
+  border-bottom: solid 1px black;
 }/*# sourceMappingURL=learn_top.css.map */

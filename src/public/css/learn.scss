@@ -1,25 +1,39 @@
 @import "./color.scss";
-@import "./header.scss";
-
 * {
     padding: 0;
     margin: 0;
 }
 
 
-
+body {
+    height: 100vh;
+}
 main {
+    h1 {
+        margin-top: 1em;
+        margin-left: 1em;
+        font-size: large;
+    }
     #learn_text {
         width: 100%;
-        border: solid 1px red;
         padding: 25px;
+
+        h2 {
+            font-size: large;
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: rgb(82, 205, 253);
+            border-bottom: 1px solid rgb(82, 205, 253);
+        }
     }
 
 
     #user_edit {
         display: grid;
         grid-template:
-            "folder play" 1fr
+            "folder play" auto
             "editor result" 1fr;
 
         position: relative;
@@ -34,6 +48,12 @@ main {
 
             .file {
                 cursor: pointer;
+                padding: 1px 5px;
+
+                &:hover {
+                    border-bottom: solid 1px gray;
+                    background-color: rgb(232, 232, 232);
+                }
             }
 
             input[type="checkbox"] {
@@ -81,18 +101,37 @@ main {
             }
         }
 
+        $play_button: 40px;
+        $play_button_padding: 16px;
         #play {
             grid-area: play;
-            text-align: end;
             margin-right: 16px;
+            min-height: $play_button + $play_button_padding + 8px;
+            
+            button {
+                display: flex;
+                align-items: start;
+                justify-content: end;
+                position: absolute;
+                right: 10px;
+                padding: $play_button_padding / 2 $play_button_padding;
+                border: solid 1px black;
+                border-radius: 16px;
+                
+                #play_file {
+                    margin-right: 10px;
+                    margin-top: $play_button / 2 / 2; // 真ん中にする
+                    vertical-align: middle;
+                    font-size: 18px;
+                }
+                // 右下にする
+                // position: absolute;
+                // right: 16px;
+                // bottom: 16px;
 
-            // 右下にする
-            // position: absolute;
-            // right: 16px;
-            // bottom: 16px;
-
-            img {
-                width: 32px;
+                img {
+                    width: $play_button;
+                }
             }
         }
 
@@ -101,8 +140,8 @@ main {
 
             position: relative;
             margin-top: 0px;
-            height: 70vh;
             width: 100%;
+            height: 100%;
 
             // 表示
             #view_code {
@@ -168,4 +207,34 @@ main {
         }
 
     }
+
+    $success_width: 33%;
+    #success {
+        display: none;
+        position: fixed;
+        top: 25%;
+        left: 50% - ($success_width / 2); // 真ん中
+
+        width: $success_width;
+        // height: 30%;
+        background-color: $content_color;
+        border: solid 1px black;
+        padding: 5px 15px;
+        
+        a {
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            border: solid 1px rgb(75, 75, 75);
+            border-radius: 30px;
+            color: rgb(49, 49, 49);
+            font-weight: bold;
+
+            background-color: rgb(206, 206, 206);
+            padding: 5px 10px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+    }
+
 }

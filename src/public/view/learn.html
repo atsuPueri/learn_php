@@ -8,11 +8,12 @@
     <title>Document</title>
     <link rel="stylesheet" href="../public/css/destyle.css">
     <link rel="stylesheet" href="../public/js/highlight/styles/a11y-dark.min.css">
+    <link rel="stylesheet" href="../public/css/header.css">
     <link rel="stylesheet" href="../public/css/learn.css">
 </head>
 
 <body>
-    <header><a href="login" class="btn-square-shadow">ログイン</a></header>
+    <?php Util\view('header.html'); ?>
     <main>
         <h1><?= $title ?></h1>
         <article id="learn_text">
@@ -25,34 +26,37 @@
                     function view_dir ($dir_info) {
                         static $id_count = 0;
 
-                        echo "<ul>";
+                        echo '<ul>';
                         foreach ($dir_info as $key => $val) {
                             
                             if (is_array($val)) {
-                                echo "<li>";
-                                echo "<input type=\"checkbox\" id=\"folder{$id_count}\">";
-                                echo "<label for=\"folder{$id_count}\">";
-                                echo "<p>{$key}</p>";
-                                echo "</label>";
+                                echo '<li>';
+                                echo '<input type="checkbox" id="folder' . $id_count . '">';
+                                echo '<label for="folder' . $id_count . '">';
+                                echo '<p>' . $key . '</p>';
+                                echo '</label>';
 
                                 $id_count++;
                                 (__FUNCTION__)($val);
                                 
-                                echo "</li>";
+                                echo '</li>';
                             } else {
-                                echo "<li class=\"file\" data-content=\"{$val}\">";
+                                echo '<li class="file" data-content="' . htmlspecialchars($val) . '">';
                                 echo $key;
-                                echo "</li>";
+                                echo '</li>';
                             }
                         }
-                        echo "</ul>";
+                        echo '</ul>';
                     };
                 ?>
                 <?php view_dir($dir_info) ?>
 
             </nav>
             <nav id="play">
-                <button><img src="../public/img/play.png"></button>
+                <button>
+                <div id="play_file"></div>
+                <img src="../public/img/play.png">
+            </button>
             </nav>
             <article id="editor">
                 <form method="get" id="editor_form">
@@ -63,14 +67,19 @@
 
                     <textarea id="input_code" spellcheck="false" wrap="hard" name="input"></textarea>
                 </form>
-                <div id="error">
-                    ここで構文エラーが起きてます、;が抜けていないか確認しましょう
-                </div>
+
+                <div id="error"></div>
             </article>
 
             <section id="result">
                 <iframe id="result_code" src="" frameborder="0"></iframe>
             </section>
+
+        </article>
+
+        <article id="success">
+            <p><?= $success ?></p><br>
+            <a href="<?= $next ?>">次へ</a>
         </article>
     </main>
     <script src="../public/js/highlight/highlight.min.js"></script>

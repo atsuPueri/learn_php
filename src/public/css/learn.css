@@ -1,42 +1,32 @@
-@charset "UTF-8";
-header {
-  text-align: right;
-  background-color: rgb(122, 134, 184);
-  padding: 1% 1.5%;
-  height: 7%;
-}
-header .btn-square-shadow {
-  display: inline-block;
-  padding: 0.5em 1em;
-  text-decoration: none;
-  background: #668ad8;
-  /*ボタン色*/
-  color: #FFF;
-  border-bottom: solid 4px #627295;
-  border-radius: 3px;
-}
-header .btn-square-shadow:active {
-  /*ボタンを押したとき*/
-  transform: translateY(4px);
-  /*下に動く*/
-  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
-  /*影を小さく*/
-  border-bottom: none;
-}
-
 * {
   padding: 0;
   margin: 0;
 }
 
+body {
+  height: 100vh;
+}
+
+main h1 {
+  margin-top: 1em;
+  margin-left: 1em;
+  font-size: large;
+}
 main #learn_text {
   width: 100%;
-  border: solid 1px red;
   padding: 25px;
+}
+main #learn_text h2 {
+  font-size: large;
+  margin-bottom: 10px;
+}
+main #learn_text a {
+  color: rgb(82, 205, 253);
+  border-bottom: 1px solid rgb(82, 205, 253);
 }
 main #user_edit {
   display: grid;
-  grid-template: "folder play" 1fr "editor result" 1fr;
+  grid-template: "folder play" auto "editor result" 1fr;
   position: relative;
   margin-top: 10px;
   height: 50vh;
@@ -49,6 +39,11 @@ main #user_edit #folders {
 }
 main #user_edit #folders .file {
   cursor: pointer;
+  padding: 1px 5px;
+}
+main #user_edit #folders .file:hover {
+  border-bottom: solid 1px gray;
+  background-color: rgb(232, 232, 232);
 }
 main #user_edit #folders input[type=checkbox] {
   display: none;
@@ -86,18 +81,34 @@ main #user_edit #folders li {
 }
 main #user_edit #play {
   grid-area: play;
-  text-align: end;
   margin-right: 16px;
+  min-height: 64px;
 }
-main #user_edit #play img {
-  width: 32px;
+main #user_edit #play button {
+  display: flex;
+  align-items: start;
+  justify-content: end;
+  position: absolute;
+  right: 10px;
+  padding: 8px 16px;
+  border: solid 1px black;
+  border-radius: 16px;
+}
+main #user_edit #play button #play_file {
+  margin-right: 10px;
+  margin-top: 10px;
+  vertical-align: middle;
+  font-size: 18px;
+}
+main #user_edit #play button img {
+  width: 40px;
 }
 main #user_edit #editor {
   grid-area: editor;
   position: relative;
   margin-top: 0px;
-  height: 70vh;
   width: 100%;
+  height: 100%;
 }
 main #user_edit #editor #view_code {
   position: absolute;
@@ -144,4 +155,27 @@ main #user_edit #result {
 main #user_edit #result iframe {
   width: 100%;
   height: 100%;
+}
+main #success {
+  display: none;
+  position: fixed;
+  top: 25%;
+  left: 33.5%;
+  width: 33%;
+  background-color: #f2f2f2;
+  border: solid 1px black;
+  padding: 5px 15px;
+}
+main #success a {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  border: solid 1px rgb(75, 75, 75);
+  border-radius: 30px;
+  color: rgb(49, 49, 49);
+  font-weight: bold;
+  background-color: rgb(206, 206, 206);
+  padding: 5px 10px;
+  margin-right: 5px;
+  margin-bottom: 5px;
 }/*# sourceMappingURL=learn.css.map */

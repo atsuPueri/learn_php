@@ -13,10 +13,17 @@
 <body>
     <?php Util\view('header.html'); ?>
     <main>
-        <ul>
-            <?php foreach ($learn_list as $key => $val): ?>
-            <li>    
-                <a href="./learn/<?= $key ?>"><?= $val ?></a>
+        <ul id="chapter_list">
+            <?php foreach ($learn_list as $chapter_title => $arr): ?>
+            <li>
+                <p class="chapter_title"><?= $chapter_title ?></p>
+                <ul>
+                    <?php foreach ($arr as $key => $val): ?>
+                    <li>
+                        <a href="./learn/<?= $key ?>"><?= $val ?></a>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
             </li>
             <?php endforeach; ?>
         </ul>
