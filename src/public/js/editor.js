@@ -88,6 +88,7 @@ window.addEventListener('load', () => {
             if (error.line !== undefined) {
                 error_element.style.display = 'block';
                 error_element.style.top     = (error.line * 16) + 'px';
+                error_element.textContent = error.message;
             } else {
                 error_element.style.display = 'none';
 
