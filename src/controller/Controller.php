@@ -26,6 +26,9 @@ class Controller
         file_put_contents($file_path, $content);
     }
 
+    /**
+     * 指定したPHPファイルを実行した際のオペコードを取得する
+     */
     protected function get_php_opcode(string $php_path): array
     {
         $command = "echo print exec | phpdbg -v {$php_path}";
@@ -42,9 +45,27 @@ class Controller
             fclose($pipes[1]);
 
             $output = [];
+            $stack = '';
+            $is_str = false;
             while (!feof($pipes[2])) {
                 $get = trim(fgets($pipes[2]));
+                // $get = htmlspecialchars($get);
                 if ($get === '') continue;
+        
+                // 閉じ括弧がない時に動く
+                if ($is_str === true) {
+                    $output[count($output) - 1] .= $get;
+                    
+                    // 閉じ括弧が見つかった時にフラグを切る
+                    if (preg_match('/"\)$/', $get) === 1) {
+                        $is_str = false;
+                    }
+                    continue;
+                }
+                // 閉じ括弧が無ければフラグをtrueに
+                if (preg_match('/string\("(?!.*"\))/', $get) === 1) {
+                    $is_str = true;
+                }
                 $output[] = $get;
             }
             // 先頭３行はいらない
@@ -57,9 +78,9 @@ class Controller
 
 
             foreach ($output as $key => $val) {
-
+                
                 // L0002
-                $regex = "/^L0*([1-9][0-9]*)/";
+                $regex = "/^L([0-9]+)/";
                 preg_match($regex, $val, $matches);
                 $exec_line = $matches[1];
 
@@ -116,7 +137,6 @@ class Controller
                 }
                 $preg = preg_match('/(?<=string\()".*"(?=\))/', $op1, $matches);
                 if ($preg === 1) {
-                    var_dump($matches);
                     $op1 = $matches[0];
                 }
 
@@ -147,5 +167,93 @@ class Controller
             return $output;
         }
         return [];
+    }
+
+    /**
+     * 第二引数のPHPのどれかに一致するか確認
+     */
+    protected function is_equal_opcodes(string $check_php_path, array $check_php_path_array): bool
+    {
+        $is_equal = false;
+
+        // ユーザーのコード
+        $user_code_array = [];
+        foreach ($this->get_php_opcode($check_php_path) as $code) {
+            $user_code_array[] = $code['code'];
+        }
+        // サンプル
+        foreach ($check_php_path_array as $file) {
+            $opcode = $this->get_php_opcode($file);
+            
+            $code_array = [];
+            foreach ($opcode as $code) {
+                $code_array[] = $code['code'];
+            }
+
+            if ($code_array == $user_code_array) {
+                $is_equal= true;
+                break;
+            }
+        }
+
+        return $is_equal;
+    }
+
+    /**
+     * learnで使用するPHPを実行した際の処理
+     * @param list<string> $sample PHPのパスを格納
+     * @todo: 内部で＄＿POSTを使用しているのでリファクタリングの必要がある
+     * 
+     * @return array{is_sample_ok: bool, line: int, message: string}
+     */
+    protected function learn_exec(array $sample): array
+    {
+        $file_info_json = $_POST['files_info'];
+        $now_file       = $_POST['now_file'];
+        $file_info_array = json_decode($file_info_json, true);
+        
+        foreach ($file_info_array as $file_info) {
+            $content = $file_info['content'];
+
+            // 相対パスを絶対パス指定にする
+
+            // "\n" -> ""
+            // $content = preg_replace("/\n/", "", $content);
+
+            // ./index -> /index
+            $content = preg_replace('/((?:require|include).*[\'"`])\.[\/\\\\]/', "$1/", $content);
+
+            // require "/" -> require __DIR__ . "/"
+            $content = preg_replace("/(require|include)\s+(?!(__DIR__|__FILE__|dirname\(__FILE__\))|\((__DIR__|__FILE__|dirname\(__FILE__\)).*\))/", "require __DIR__ . ", $content);
+            // $content
+            $this->file_put_contents(__DIR__ . "/../public/storage" . $file_info['file_path'], $content);
+        }
+
+        
+        // OPコード単位で一致するか確認
+        $check_path = __DIR__ . "/../public/storage" . $now_file;
+        $error['is_sample_ok'] = $this->is_equal_opcodes($check_path, $sample);
+        
+
+        // エラー取得
+        // 実際に出力はさせない為に
+        ob_start();
+    
+        try {
+            require $check_path;
+        } catch (\ParseError $e) {
+            $error['line']    = $e->getLine();
+            $error['message'] = '<-- この辺りで構文エラーが起きてます、この辺りを確認してください';
+        } catch (\Exception $e) {
+            $error['line']    = $e->getLine();
+            $error['message'] = $e->getMessage();
+        } catch (\Error $e) {
+            $error['line']    = $e->getLine();
+            $error['message'] = $e->getMessage();
+        }
+
+        ob_clean();
+
+        return $error;
     }
 }
