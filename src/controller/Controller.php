@@ -208,6 +208,7 @@ class Controller
      */
     protected function learn_exec(array $sample): array
     {
+        $learn_folder = __DIR__ . "/../public/storage/learn";
         $file_info_json = $_POST['files_info'];
         $now_file       = $_POST['now_file'];
         $file_info_array = json_decode($file_info_json, true);
@@ -226,12 +227,12 @@ class Controller
             // require "/" -> require __DIR__ . "/"
             $content = preg_replace("/(require|include)\s+(?!(__DIR__|__FILE__|dirname\(__FILE__\))|\((__DIR__|__FILE__|dirname\(__FILE__\)).*\))/", "require __DIR__ . ", $content);
             // $content
-            $this->file_put_contents(__DIR__ . "/../public/storage" . $file_info['file_path'], $content);
+            $this->file_put_contents($learn_folder . $file_info['file_path'], $content);
         }
 
         
         // OPコード単位で一致するか確認
-        $check_path = __DIR__ . "/../public/storage" . $now_file;
+        $check_path = $learn_folder . $now_file;
         $error['is_sample_ok'] = $this->is_equal_opcodes($check_path, $sample);
         
 
