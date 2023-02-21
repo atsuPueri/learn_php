@@ -15,9 +15,10 @@
     <main>
         <ul id="chapter_list">
             <?php foreach ($learn_list as $chapter_title => $arr): ?>
-            <li>
+            <li class="chapter">
                 <p class="chapter_title"><?= $chapter_title ?></p>
-                <ul>
+                
+                <ul class="chapter_content_list">
                     <?php foreach ($arr as $key => $val): ?>
                     <li>
                         <a href="./learn/<?= $key ?>"><?= $val ?></a>
