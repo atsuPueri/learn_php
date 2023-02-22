@@ -10,7 +10,7 @@ class Container implements ContainerInterface
     public function get(string $id)
     {
         $map = require(__DIR__ . '/ContainerMap.php');
-        return $map[$id];
+        return $map[$id]();
     }
     
     public function has(string $id): bool

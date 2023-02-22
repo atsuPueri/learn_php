@@ -10,7 +10,7 @@ $container = new Container();
 
 if ($container->has($web[0])) {
     $get = $container->get($web[0]);
-    $web[0] = $get();
+    $web[0] = $get;
     $web();
 } else {
     header("HTTP/1.1 404 Not Found");
