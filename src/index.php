@@ -1,6 +1,6 @@
 <?php
 
-use App\Container;
+use App\Container\Container;
 
 require __DIR__ . '/util/view.php'; // autoloadで読み込めない
 require __DIR__ . '/vendor/autoload.php';

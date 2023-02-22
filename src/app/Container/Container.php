@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Container;
 
 use Psr\Container\ContainerInterface;
 

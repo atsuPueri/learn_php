@@ -8,4 +8,5 @@
 return [
     Controller\Top::class   => fn() => new Controller\Top(),
     Controller\Learn::class => fn() => new Controller\Learn(),
+    Controller\Login::class => fn() => new Controller\Login(),
 ];
