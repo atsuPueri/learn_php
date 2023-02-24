@@ -38,7 +38,6 @@ class LoginAdapter implements LoginPort
                 $id = $row['id'];
             }
         } catch (PDOException $e) {
-            echo $e->getMessage();
             throw $e;
         }
         
