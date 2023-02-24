@@ -10,9 +10,10 @@ use PDOException;
 
 class SignUpAdapter implements SignUpPort
 {
-    public function exec(string $login_id, string $password, string $user_name)
+    public function exec(string $login_id, string $password, string $user_name): bool
     {
         $container = new Container();
+        $is_finish = false;
 
         try {
             /** @var PDO */
@@ -52,8 +53,10 @@ class SignUpAdapter implements SignUpPort
             $stmt->bindValue(':hash',     $hash_password, PDO::PARAM_STR);
             $stmt->execute();
             
+            $is_finish = true;
         } catch (PDOException $e) {
             throw $e;
         }
+        return $is_finish;
     }
 }

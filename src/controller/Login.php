@@ -44,7 +44,7 @@ class Login extends Controller
 
                     $_SESSION['user_id'] = $user_id;
                     header('Location: ./free');
-                    return;
+                    exit;
                 }
                 $error['login'] = 'ログインID、もしくはパスワードが違います';
             } catch (\PDOException) {
@@ -86,9 +86,10 @@ class Login extends Controller
             /** @var \App\Login\SignUp */
             $sign_up = $container->get(\App\Login\UseCase\SignUp::class);
             try {
-                if ($sign_up->exec($user_name, $login_id, $password)) {
+                $is_success_sign_up = $sign_up->exec($user_name, $login_id, $password);
+                if ($is_success_sign_up === true) {
                     header('Location: ./free');
-                    return;
+                    exit;
                 }
             } catch (ExistsIdException $e) {
                 $error['sign_up'] = $e->getMessage();

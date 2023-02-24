@@ -10,8 +10,8 @@ class SignUp
         private SignUpPort $port
     ){}
 
-    public function exec(string $user_name, string $login_id, string $password)
+    public function exec(string $user_name, string $login_id, string $password): bool
     {
-        $this->port->exec($user_name, $login_id, $password);
+        return $this->port->exec($user_name, $login_id, $password);
     }
 }
