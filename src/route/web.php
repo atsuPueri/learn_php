@@ -3,6 +3,7 @@
 use Controller\Top;
 use Controller\Learn;
 use Controller\Login;
+use Controller\Free;
 
 $request_path = require(__DIR__ . '/route.php');
 $method = $_SERVER['REQUEST_METHOD'];
@@ -23,6 +24,8 @@ return match ([$request_path, $method]) {
     ['/learn/require', 'GET']    => [Learn::class, 'require'],
     ['/learn/require', 'POST']   => [Learn::class, 'require_exec'],
 
+    ['/free', 'GET']             => [Free::class, 'show_top'],
+    ['/newProject', 'GET']       => [Free::class, 'new_project'],
     ['/login', 'GET']           => [Login::class, 'login'],
     ['/login', 'POST']          => [Login::class, 'login_exec'],
     
