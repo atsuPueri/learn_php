@@ -6,6 +6,8 @@ require __DIR__ . '/util/view.php'; // autoloadで読み込めない
 require __DIR__ . '/vendor/autoload.php';
 $web = require_once __DIR__ . '/route/web.php';
 
+session_start();
+
 $container = new Container();
 
 if ($container->has($web[0])) {
