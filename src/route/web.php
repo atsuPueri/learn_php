@@ -2,12 +2,13 @@
 
 use Controller\Top;
 use Controller\Learn;
+use Controller\Login;
 
 $request_path = require(__DIR__ . '/route.php');
 $method = $_SERVER['REQUEST_METHOD'];
 
 return match ([$request_path, $method]) {
-    ['/',      'GET']            => [Top::class, 'show'],
+    ['/',      'GET']            => [Top::class,   'show'],
     ['/learn', 'GET']            => [Learn::class, 'show'],
     
     ['/learn/php_basic', 'GET']  => [Learn::class, 'php_basic'],
@@ -22,6 +23,10 @@ return match ([$request_path, $method]) {
     ['/learn/require', 'GET']    => [Learn::class, 'require'],
     ['/learn/require', 'POST']   => [Learn::class, 'require_exec'],
 
+    ['/login', 'GET']           => [Login::class, 'login'],
+    ['/login', 'POST']          => [Login::class, 'login_exec'],
     
+    ['/sign_up', 'GET']         => [Login::class, 'sign_up'],
+    ['/sign_up', 'POST']        => [Login::class, 'sign_up_exec'],
     default => '404',
 };
