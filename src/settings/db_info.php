@@ -3,7 +3,7 @@
 $dsn = "mysql:";
 
 // データベースサーバーが存在するホスト名
-$host = "192.168.45.4";
+$host = "localhost";
 $dsn .= "host={$host};";
 
 // データベースサーバーが待機しているポート
@@ -11,7 +11,7 @@ $port = "3306";
 $dsn .= "port={$port};";
 
 // データベース名
-$dbname = "Nt32";
+$dbname = "learn_php";
 $dsn .= "dbname={$dbname};";
 
 // 文字セット
