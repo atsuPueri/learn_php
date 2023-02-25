@@ -1,0 +1,152 @@
+#user_edit {
+  display: grid;
+  grid-template: "folder play" auto "editor result" 1fr;
+  position: relative;
+  margin-top: 10px;
+  height: 50vh;
+  width: 100%;
+}
+#user_edit #folders {
+  border: solid 1px rgb(0, 0, 0);
+  grid-area: folder;
+  padding: 5px;
+}
+#user_edit #folders:first-child ul {
+  height: 100%;
+}
+#user_edit #folders .file {
+  cursor: pointer;
+  padding: 1px 5px;
+}
+#user_edit #folders .file:hover {
+  border-bottom: solid 1px gray;
+  background-color: rgb(232, 232, 232);
+}
+#user_edit #folders input[type=checkbox] {
+  display: none;
+}
+#user_edit #folders input[type=checkbox] ~ ul {
+  display: none;
+}
+#user_edit #folders input[type=checkbox]:checked ~ ul {
+  display: block;
+}
+#user_edit #folders input[type=checkbox] ~ label p {
+  padding-left: 5px;
+}
+#user_edit #folders input[type=checkbox] ~ label p::before {
+  display: inline-block;
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(../img/folder.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+#user_edit #folders input[type=checkbox]:checked ~ label p::before {
+  display: inline-block;
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(../img/folder_open.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+#user_edit #folders li {
+  margin-left: 15px;
+  list-style: none;
+}
+#user_edit #play {
+  grid-area: play;
+  margin-right: 16px;
+  min-height: 64px;
+}
+#user_edit #play button {
+  display: flex;
+  align-items: start;
+  justify-content: end;
+  position: absolute;
+  right: 10px;
+  padding: 8px 16px;
+  border: solid 1px black;
+  border-radius: 16px;
+}
+#user_edit #play button #play_file {
+  margin-right: 10px;
+  margin-top: 10px;
+  vertical-align: middle;
+  font-size: 18px;
+}
+#user_edit #play button img {
+  width: 40px;
+}
+#user_edit #editor {
+  grid-area: editor;
+  position: relative;
+  margin-top: 0px;
+  width: 100%;
+  height: 100%;
+}
+#user_edit #editor #view_code {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  font-family: monospace;
+  letter-spacing: normal;
+  font-size: 16px;
+  line-height: 16px;
+}
+#user_edit #editor #input_code {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0);
+  color: rgba(0, 0, 0, 0);
+  caret-color: rgb(214, 187, 187);
+  padding: 0.9em;
+  font-family: monospace;
+  letter-spacing: normal;
+  font-size: 16px;
+  line-height: 16px;
+  resize: none;
+}
+#user_edit #editor #error {
+  display: none;
+  position: absolute;
+  top: 32px;
+  left: 95%;
+  z-index: 2;
+  cursor: pointer;
+  width: 180px;
+  font-size: 12px;
+  background-color: rgba(255, 255, 255, 0.951);
+  border: solid 1px rgb(115, 115, 115);
+}
+#user_edit #result {
+  grid-area: result;
+  border: solid 1px black;
+}
+#user_edit #result iframe {
+  width: 100%;
+  height: 100%;
+}
+
+menu {
+  position: fixed;
+  border: solid 1px black;
+  width: 10vw;
+  background-color: rgb(253, 253, 253);
+  padding: 0;
+  z-index: 1;
+}
+menu button {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+menu button:hover {
+  background-color: rgb(234, 234, 234);
+}/*# sourceMappingURL=new_project.css.map */

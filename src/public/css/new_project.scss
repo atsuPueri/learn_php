@@ -1,0 +1,200 @@
+#user_edit {
+    display: grid;
+    grid-template:
+        "folder play" auto
+        "editor result" 1fr;
+
+    position: relative;
+    margin-top: 10px;
+    height: 50vh;
+    width: 100%;
+
+    #folders {
+        border: solid 1px rgb(0, 0, 0);
+        grid-area: folder;
+        padding: 5px;
+
+        &:first-child ul {
+            height: 100%;
+        }
+
+        .file {
+            cursor: pointer;
+            padding: 1px 5px;
+
+            &:hover {
+                border-bottom: solid 1px gray;
+                background-color: rgb(232, 232, 232);
+            }
+        }
+
+        input[type="checkbox"] {
+            display: none;
+
+            &~ul {
+                display: none;
+                // transition-delay: 0.5s; // 効かない、heightが%とかだと効かないっぽい？
+            }
+
+            &:checked~ul {
+                display: block;
+            }
+
+            &~label p {
+                padding-left: 5px;
+            }
+            
+            &~label p::before {
+                display: inline-block;
+                content: "";
+                width: 15px;
+                height: 15px;
+                background-image: url(../img/folder.png);
+                background-size: contain;
+                background-repeat: no-repeat;
+                // vertical-align: middle;
+            }
+            
+            &:checked~label p::before {
+                display: inline-block;
+                content: "";
+                width: 15px;
+                height: 15px;
+                background-image: url(../img/folder_open.png);
+                background-size: contain;
+                background-repeat: no-repeat;
+                // vertical-align: middle;
+            }
+        }
+
+        li {
+            margin-left: 15px; // 少し右に寄せる
+            list-style: none;
+        }
+    }
+
+    $play_button: 40px;
+    $play_button_padding: 16px;
+    #play {
+        grid-area: play;
+        margin-right: 16px;
+        min-height: $play_button + $play_button_padding + 8px;
+        
+        button {
+            display: flex;
+            align-items: start;
+            justify-content: end;
+            position: absolute;
+            right: 10px;
+            padding: $play_button_padding / 2 $play_button_padding;
+            border: solid 1px black;
+            border-radius: 16px;
+            
+            #play_file {
+                margin-right: 10px;
+                margin-top: $play_button / 2 / 2; // 真ん中にする
+                vertical-align: middle;
+                font-size: 18px;
+            }
+            // 右下にする
+            // position: absolute;
+            // right: 16px;
+            // bottom: 16px;
+
+            img {
+                width: $play_button;
+            }
+        }
+    }
+
+    #editor {
+        grid-area: editor;
+
+        position: relative;
+        margin-top: 0px;
+        width: 100%;
+        height: 100%;
+
+        // 表示
+        #view_code {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            font-family: monospace;
+            letter-spacing: normal;
+            font-size: 16px;
+            line-height: 16px;
+
+        }
+
+        // 入力
+        #input_code {
+            position: absolute;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            opacity: 1;
+
+            background-color: rgba(255, 255, 255, 0);
+            color: rgb(0, 0, 0, 0);
+
+
+            caret-color: rgb(214, 187, 187);
+
+            padding: 0.9em;
+            font-family: monospace;
+            letter-spacing: normal;
+            font-size: 16px;
+            line-height: 16px;
+
+            resize: none;
+        }
+
+        #error {
+            display: none;
+            position: absolute;
+            top: calc(16px * 2);
+            left: 95%;
+            z-index: 2;
+
+            cursor: pointer;
+
+            width: 180px;
+            font-size: 12px;
+            background-color: rgba(255, 255, 255, 0.951);
+            border: solid 1px rgb(115, 115, 115);
+        }
+    }
+
+
+    #result {
+        grid-area: result;
+        border: solid 1px black;
+
+        iframe{
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+}
+
+menu {
+    position: fixed;
+    border: solid 1px black;
+    width: 10vw;
+    background-color: rgb(253, 253, 253);
+    padding: 0;
+    z-index: 1;
+    
+    button {
+        display: block;
+        width: 100%;
+        text-align: center;
+
+        &:hover {
+            background-color: rgb(234, 234, 234);
+        }
+    }
+}
