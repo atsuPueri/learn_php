@@ -29,7 +29,11 @@ class Free extends Controller
 
     public function new_project()
     {
-        view('new_project');
+        view('new_project.html', [
+            'dir_info' => [
+                'index.php' => "<?php\n// code...",
+            ]
+        ]);
     }
 
     public function new_project_exec()
