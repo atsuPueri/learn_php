@@ -2,17 +2,19 @@
 header {
   text-align: right;
   background-color: rgb(122, 134, 184);
-  padding: 1% 1.5%;
+  padding: 8px 16px;
   height: 80px;
 }
 header .btn-square-shadow {
   display: inline-block;
+  padding: 0.4em 1em;
   text-decoration: none;
   background: #668ad8;
   /*ボタン色*/
   color: #FFF;
   border-bottom: solid 4px #627295;
   border-radius: 3px;
+  margin: 10px;
 }
 header .btn-square-shadow:active {
   /*ボタンを押したとき*/

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="login" method="post">
+
+        <p><?= $error['login'] ?? '' ?></p>
+
+        <label for="login_id">ログインID</label>
+        <input id="login_id" type="text" name="login_id">
+        <p><?= $error['login_id'] ?? '' ?></p>
+
+        <label for="password">パスワード</label>
+        <input id="password" type="password" name="password">
+        <p><?= $error['password'] ?? '' ?></p>
+
+        <button>ログイン</button>
+    </form>
+
+    <a href="./sign_up">登録はこちら</a>
+</body>
+</html>
