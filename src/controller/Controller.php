@@ -12,6 +12,12 @@ class Controller
     protected function file_put_contents(string $file_path, string $content)
     {
 
+        // ./index -> /index
+        $content = preg_replace('/((?:require|include).*[\'"`])\.[\/\\\\]/', "$1/", $content);
+
+        // require "/" -> require __DIR__ . "/"
+        $content = preg_replace("/(require|include)\s+(?!(__DIR__|__FILE__|dirname\(__FILE__\))|\((__DIR__|__FILE__|dirname\(__FILE__\)).*\))/", "require __DIR__ . ", $content);
+                    
         $explode = explode("/", $file_path);
         unset($explode[count($explode) - 1]);
 
@@ -213,20 +219,11 @@ class Controller
         $file_info_array = json_decode($file_info_json, true);
         
         foreach ($file_info_array as $file_info) {
-            $content = $file_info['content'];
-
-            // 相対パスを絶対パス指定にする
-
-            // "\n" -> ""
-            // $content = preg_replace("/\n/", "", $content);
-
-            // ./index -> /index
-            $content = preg_replace('/((?:require|include).*[\'"`])\.[\/\\\\]/', "$1/", $content);
-
-            // require "/" -> require __DIR__ . "/"
-            $content = preg_replace("/(require|include)\s+(?!(__DIR__|__FILE__|dirname\(__FILE__\))|\((__DIR__|__FILE__|dirname\(__FILE__\)).*\))/", "require __DIR__ . ", $content);
+            $content   = $file_info['content'];
+            $file_path = $file_info['file_path'];
+            
             // $content
-            $this->file_put_contents(__DIR__ . "/../public/storage" . $file_info['file_path'], $content);
+            $this->file_put_contents(__DIR__ . "/../public/storage" . $file_path, $content);
         }
 
         

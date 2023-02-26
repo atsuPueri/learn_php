@@ -27,6 +27,7 @@ return match ([$request_path, $method]) {
     ['/free', 'GET']             => [Free::class, 'show_top'],
     ['/free/newProject', 'GET']       => [Free::class, 'new_project'],
     ['/free/newProject', 'POST']       => [Free::class, 'new_project_exec'],
+    ['/free/save', 'POST']       => [Free::class, 'save'],
 
 
     ['/login', 'GET']           => [Login::class, 'login'],

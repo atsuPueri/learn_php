@@ -1,13 +1,18 @@
 #user_edit {
   display: grid;
-  grid-template: "folder play" auto "editor result" 1fr;
+  grid-template: "project_name project_name" 32px "folder play" auto "editor result" 1fr;
   position: relative;
   margin-top: 10px;
   height: 50vh;
   width: 100%;
 }
+#user_edit #project_name {
+  grid-area: project_name;
+  border: solid 1px black;
+  padding: 3px;
+}
 #user_edit #folders {
-  border: solid 1px rgb(0, 0, 0);
+  border-right: solid 1px rgb(0, 0, 0);
   grid-area: folder;
   padding: 5px;
 }
@@ -58,21 +63,20 @@
 }
 #user_edit #play {
   grid-area: play;
-  margin-right: 16px;
   min-height: 64px;
-}
-#user_edit #play button {
   display: flex;
   align-items: start;
   justify-content: end;
-  position: absolute;
-  right: 10px;
-  padding: 8px 16px;
+}
+#user_edit #play button {
+  display: flex;
+  padding: 5.3333333333px 16px;
   border: solid 1px black;
   border-radius: 16px;
+  margin-right: 8px;
 }
 #user_edit #play button #play_file {
-  margin-right: 10px;
+  margin-right: 20px;
   margin-top: 10px;
   vertical-align: middle;
   font-size: 18px;

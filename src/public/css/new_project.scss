@@ -1,6 +1,7 @@
 #user_edit {
     display: grid;
     grid-template:
+        "project_name project_name" 32px
         "folder play" auto
         "editor result" 1fr;
 
@@ -9,8 +10,14 @@
     height: 50vh;
     width: 100%;
 
+    #project_name {
+        grid-area: project_name;
+        border: solid 1px black;
+        padding: 3px;
+    }
+
     #folders {
-        border: solid 1px rgb(0, 0, 0);
+        border-right: solid 1px rgb(0, 0, 0);
         grid-area: folder;
         padding: 5px;
 
@@ -77,21 +84,22 @@
     $play_button_padding: 16px;
     #play {
         grid-area: play;
-        margin-right: 16px;
         min-height: $play_button + $play_button_padding + 8px;
         
+        
+        display: flex;
+        align-items: start;
+        justify-content: end;
         button {
             display: flex;
-            align-items: start;
-            justify-content: end;
-            position: absolute;
-            right: 10px;
-            padding: $play_button_padding / 2 $play_button_padding;
+            padding: $play_button_padding / 3 $play_button_padding;
             border: solid 1px black;
             border-radius: 16px;
-            
+            margin-right: 8px;
+
+
             #play_file {
-                margin-right: 10px;
+                margin-right: $play_button / 2;
                 margin-top: $play_button / 2 / 2; // 真ん中にする
                 vertical-align: middle;
                 font-size: 18px;

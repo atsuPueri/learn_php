@@ -17,6 +17,7 @@
     <main>
 
         <article id="user_edit">
+            <input type="text" id="project_name" placeholder="プロジェクト名を入力してください">
             <nav id="folders">
                 <?php
                     function view_dir ($dir_info) {
@@ -54,6 +55,9 @@
                     <div id="play_file"></div>
                     <img src="../public/img/play.png">
                 </button>
+                <button id="save_button">
+                    <img src="../public/img/save.png">
+                </button>
             </nav>
             <article id="editor">
                 <form method="get" id="editor_form">
@@ -74,11 +78,14 @@
 
         </article>
     </main>
+
+    <div id="user_id" data-user_id="<?= $_SESSION['user_id'] ?>"></div>
     <div id="cnt" data-cnt="<?= $id_count ?>"></div>
     <script src="../public/js/highlight/highlight.min.js"></script>
     <script src="../public/js/function.js"></script>
     <script src="../public/js/editor.js"></script>
     <script src="../public/js/right_click_menu.js"></script>
+    <script src="../public/js/save.js"></script>
 </body>
 
 </html>

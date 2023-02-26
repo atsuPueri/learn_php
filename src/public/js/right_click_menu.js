@@ -69,6 +69,11 @@ window.addEventListener('load', ()=>{
                 input_name.remove();
             });
 
+            // クリックされたらinputの表示切替
+            new_file.addEventListener('click', e => {
+                open_file(e.target);
+            });
+
             input_name.focus();
             menu.remove();
         });
@@ -131,7 +136,7 @@ window.addEventListener('load', ()=>{
         // 削除ボタンが押されたら
         delete_button.addEventListener('click', () => {
             
-            if (e.target.classList.contains('folder')) {
+            if (!e.target.classList.contains('file')) {
                 e.target.parentElement.parentElement.innerHTML = '';
                 e.target.parentElement.parentElement.remove();
             }

@@ -9,6 +9,7 @@ return [
     App\Login\UseCase\Login::class  => fn() => new App\Login\UseCase\Login(new App\Login\Adapter\LoginAdapter()),
     App\Login\UseCase\SignUp::class => fn() => new App\Login\UseCase\SignUp(new App\Login\Adapter\SignUpAdapter()),
     App\Project\GetAll::class       => fn() => new App\Project\GetAll(),
+    App\Project\SaveProject::class  => fn() => new App\Project\SaveProject(),
     Controller\Free::class          => fn() => new Controller\Free(),
     Controller\Top::class           => fn() => new Controller\Top(),
     Controller\Learn::class         => fn() => new Controller\Learn(),
