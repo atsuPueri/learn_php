@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/css/destyle.css">
+    <link rel="stylesheet" href="../public/css/header.css">
+    <link rel="stylesheet" href="../public/css/new_project.css">
+    <link rel="stylesheet" href="../public/js/highlight/styles/a11y-dark.min.css">
+</head>
+
+<body>
+    <?php Util\view('header.html'); ?>
+    <main>
+
+        <article id="user_edit">
+            <h2 id="project_name"><?= $name ?></h2>
+            <nav id="folders">
+                <?php
+                    function view_dir ($dir_info) {
+                        static $id_count = 0;
+
+                        echo '<ul>';
+                        foreach ($dir_info as $key => $val) {
+                            
+                            if (is_array($val)) {
+                                echo '<li>';
+                                echo '<input type="checkbox" id="folder' . $id_count . '">';
+                                echo '<label for="folder' . $id_count . '">';
+                                echo '<p>' . htmlspecialchars($key) . '</p>';
+                                echo '</label>';
+
+                                $id_count++;
+                                (__FUNCTION__)($val);
+                                
+                                echo '</li>';
+                            } else {
+                                echo '<li class="file" data-content="' . $val . '">';
+                                echo htmlspecialchars($key);
+                                echo '</li>';
+                            }
+                        }
+                        echo '</ul>';
+                        return $id_count;
+                    };
+                ?>
+                <?php $id_count = view_dir($dir_info) ?>
+
+            </nav>
+            <nav id="play">
+                <button>
+                    <div id="play_file"></div>
+                    <img src="../public/img/play.png">
+                </button>
+                <button id="save_button">
+                    <img src="../public/img/save.png">
+                </button>
+            </nav>
+            <article id="editor">
+                <form method="get" id="editor_form">
+
+                    <pre>
+                        <code class="php" id="view_code"></code>
+                    </pre>
+
+                    <textarea id="input_code" spellcheck="false" wrap="hard" name="input"></textarea>
+                </form>
+
+                <div id="error"></div>
+            </article>
+
+            <section id="result">
+                <iframe id="result_code" src="" frameborder="0"></iframe>
+            </section>
+
+        </article>
+    </main>
+
+    <div id="user_id" data-user_id="<?= $_SESSION['user_id'] ?>"></div>
+    <div id="cnt" data-cnt="<?= $id_count ?>"></div>
+    <script src="../public/js/highlight/highlight.min.js"></script>
+    <script src="../public/js/function.js"></script>
+    <script src="../public/js/editor.js"></script>
+    <script src="../public/js/right_click_menu.js"></script>
+    <script src="../public/js/update.js"></script>
+</body>
+
+</html>

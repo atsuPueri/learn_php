@@ -78,7 +78,7 @@ window.addEventListener('load', () => {
         .then(r => {
             // 実行後にsrcに結果を反映
             const result_code = document.getElementById('result_code');
-            result_code.src = window.location.href + '/../../public/storage/learn' + input_code.dataset.now_file;
+            result_code.src = window.location.pathname + '/../../public/storage/learn' + input_code.dataset.now_file;
 
             const error = JSON.parse(r);
             const error_element = document.getElementById('error');

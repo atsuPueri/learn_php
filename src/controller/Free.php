@@ -62,10 +62,41 @@ class Free extends Controller
             $this->file_put_contents(__DIR__ . "/../public/storage/{$user_id}/{$project_name}" . $file_path, $content);
 
         }
-        
+
         $container = new Container();
         $save_project = $container->get(SaveProject::class);
         $save_project->exec($user_id, $project_name);
 
+    }
+
+    public function edit_project()
+    {
+        $id = $_GET['for'];
+        $dir_info = $this->get_under_path(__DIR__ . "/../public/storage/{$id}");
+
+        $explode = explode('/', $id);
+        $name = $explode[1];
+        view('edit_project.html', [
+            'name' => $name,
+            'dir_info' => $dir_info,
+        ]);
+    }
+
+    public function update()
+    {
+        $project_name   = $_POST['project_name'];
+        $file_info_json = $_POST['files_info'];
+        $user_id        = $_POST['user_id'];
+        $file_info_array = json_decode($file_info_json, true);
+
+        $this->rm_rf(__DIR__ . "/../public/storage/{$user_id}/{$project_name}");
+        foreach ($file_info_array as $file_info) {
+            $content   = $file_info['content'];
+            $file_path = $file_info['file_path'];
+            
+            // $content
+            $this->file_put_contents(__DIR__ . "/../public/storage/{$user_id}/{$project_name}" . $file_path, $content);
+
+        }
     }
 }

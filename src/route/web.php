@@ -25,9 +25,13 @@ return match ([$request_path, $method]) {
     ['/learn/require', 'POST']   => [Learn::class, 'require_exec'],
 
     ['/free', 'GET']             => [Free::class, 'show_top'],
-    ['/free/newProject', 'GET']       => [Free::class, 'new_project'],
-    ['/free/newProject', 'POST']       => [Free::class, 'new_project_exec'],
+    ['/free/newProject', 'GET']  => [Free::class, 'new_project'],
+    ['/free/newProject', 'POST'] => [Free::class, 'new_project_exec'],
+    ['/free/edit_project', 'GET']=> [Free::class, 'edit_project'],
+    ['/free/edit_project', 'POST']=> [Free::class, 'new_project_exec'],
+
     ['/free/save', 'POST']       => [Free::class, 'save'],
+    ['/free/update', 'POST']     => [Free::class, 'update'],
 
 
     ['/login', 'GET']           => [Login::class, 'login'],

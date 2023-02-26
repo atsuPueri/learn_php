@@ -16,7 +16,7 @@
             <li><a href="./free/newProject">新規作成<img src="./public/img/add.png"></a></li>
             <?php foreach ($project_list as $one_project): ?>
             <li>
-                <a href="edit_project?for=<?= $one_project['id'] ?>"><?= $one_project['name'] ?></a>
+                <a href="./free/edit_project?for=<?= $_SESSION['user_id'] ?><?= htmlspecialchars("/") ?><?= $one_project['name'] ?>"><?= $one_project['name'] ?></a>
             </li>
             <?php endforeach; ?>
         </ul>

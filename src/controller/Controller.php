@@ -17,7 +17,7 @@ class Controller
 
         // require "/" -> require __DIR__ . "/"
         $content = preg_replace("/(require|include)\s+(?!(__DIR__|__FILE__|dirname\(__FILE__\))|\((__DIR__|__FILE__|dirname\(__FILE__\)).*\))/", "require __DIR__ . ", $content);
-                    
+
         $explode = explode("/", $file_path);
         unset($explode[count($explode) - 1]);
 
@@ -57,11 +57,11 @@ class Controller
                 $get = trim(fgets($pipes[2]));
                 // $get = htmlspecialchars($get);
                 if ($get === '') continue;
-        
+
                 // 閉じ括弧がない時に動く
                 if ($is_str === true) {
                     $output[count($output) - 1] .= $get;
-                    
+
                     // 閉じ括弧が見つかった時にフラグを切る
                     if (preg_match('/"\)$/', $get) === 1) {
                         $is_str = false;
@@ -84,7 +84,7 @@ class Controller
 
 
             foreach ($output as $key => $val) {
-                
+
                 // L0002
                 $regex = "/^L([0-9]+)/";
                 preg_match($regex, $val, $matches);
@@ -190,14 +190,14 @@ class Controller
         // サンプル
         foreach ($check_php_path_array as $file) {
             $opcode = $this->get_php_opcode($file);
-            
+
             $code_array = [];
             foreach ($opcode as $code) {
                 $code_array[] = $code['code'];
             }
 
             if ($code_array == $user_code_array) {
-                $is_equal= true;
+                $is_equal = true;
                 break;
             }
         }
@@ -218,25 +218,25 @@ class Controller
         $file_info_json = $_POST['files_info'];
         $now_file       = $_POST['now_file'];
         $file_info_array = json_decode($file_info_json, true);
-        
+
         foreach ($file_info_array as $file_info) {
             $content   = $file_info['content'];
             $file_path = $file_info['file_path'];
-            
+
             // $content
             $this->file_put_contents($learn_folder . $file_info['file_path'], $content);
         }
 
-        
+
         // OPコード単位で一致するか確認
         $check_path = $learn_folder . $now_file;
         $error['is_sample_ok'] = $this->is_equal_opcodes($check_path, $sample);
-        
+
 
         // エラー取得
         // 実際に出力はさせない為に
         ob_start();
-    
+
         try {
             require $check_path;
         } catch (\ParseError $e) {
@@ -254,4 +254,39 @@ class Controller
 
         return $error;
     }
+
+    public function get_under_path(string $path): array
+    {
+        $glob = glob($path . "/*");
+        $arr = [];
+        foreach ($glob as $absolute_path) {
+            if (is_dir($absolute_path)) {
+                $explode = explode($path . "/", $absolute_path);
+                $key = $explode[count($explode) - 1];
+
+                // ディレクトリ名をキーにしたい
+                $arr[$key] = $this->get_under_path($absolute_path);
+            } else {
+                $explode = explode($path . "/", $absolute_path);
+                $relative_path = $explode[count($explode) - 1];
+
+                $file_data = htmlspecialchars(file_get_contents($absolute_path));
+                $arr[$relative_path] = $file_data;
+            }
+        }
+        return $arr;
+    }
+
+    public function rm_rf($path)
+    {
+        foreach (glob("$path/*") as $e) {
+            if (is_dir($e)) {
+                $this->rm_rf($e);
+            } else {
+                unlink($e);
+            }
+        }
+        rmdir($path);
+    }
+    
 }

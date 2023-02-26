@@ -19,10 +19,10 @@ window.addEventListener('load', () => {
         const send_data = new FormData();
         send_data.append('files_info', JSON.stringify(files_info));
         send_data.append('user_id', document.getElementById('user_id').dataset.user_id);
-        send_data.append('project_name', document.getElementById('project_name').value);
+        send_data.append('project_name', document.getElementById('project_name').textContent);
 
 
-        fetch(window.location.href + '/../save', {
+        fetch(window.location.pathname + '/../update', {
             method: 'POST',
             body:   send_data,
         })
