@@ -289,4 +289,30 @@ class Controller
         rmdir($path);
     }
     
+    public function zip($path, $zipfile)
+    {
+        $za = new \ZipArchive();
+        $za->open($zipfile, \ZIPARCHIVE::CREATE);
+        $this->zipSub($za, $path);
+        $za->close();
+    }
+
+    public function zipSub($za, $path, $parentPath = '')
+    {
+        $dh = opendir($path);
+        while (($entry = readdir($dh)) !== false) {
+            if ($entry == '.' || $entry == '..') {
+            } else {
+                $localPath = $parentPath . $entry;
+                $fullpath = $path . '/' . $entry;
+                if (is_file($fullpath)) {
+                    $za->addFile($fullpath, $localPath);
+                } else if (is_dir($fullpath)) {
+                    $za->addEmptyDir($localPath);
+                    $this->zipSub($za, $fullpath, $localPath . '/');
+                }
+            }
+        }
+        closedir($dh);
+    }
 }

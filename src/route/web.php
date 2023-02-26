@@ -33,6 +33,10 @@ return match ([$request_path, $method]) {
     ['/free/save', 'POST']       => [Free::class, 'save'],
     ['/free/update', 'POST']     => [Free::class, 'update'],
 
+    ['/free/download', 'GET']    => [Free::class, 'download'],
+
+        
+
 
     ['/login', 'GET']           => [Login::class, 'login'],
     ['/login', 'POST']          => [Login::class, 'login_exec'],

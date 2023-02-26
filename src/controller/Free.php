@@ -53,20 +53,18 @@ class Free extends Controller
         $file_info_json = $_POST['files_info'];
         $user_id        = $_POST['user_id'];
         $file_info_array = json_decode($file_info_json, true);
-        
+
         foreach ($file_info_array as $file_info) {
             $content   = $file_info['content'];
             $file_path = $file_info['file_path'];
-            
+
             // $content
             $this->file_put_contents(__DIR__ . "/../public/storage/{$user_id}/{$project_name}" . $file_path, $content);
-
         }
 
         $container = new Container();
         $save_project = $container->get(SaveProject::class);
         $save_project->exec($user_id, $project_name);
-
     }
 
     public function edit_project()
@@ -93,10 +91,24 @@ class Free extends Controller
         foreach ($file_info_array as $file_info) {
             $content   = $file_info['content'];
             $file_path = $file_info['file_path'];
-            
+
             // $content
             $this->file_put_contents(__DIR__ . "/../public/storage/{$user_id}/{$project_name}" . $file_path, $content);
-
         }
+    }
+
+    public function download()
+    {
+        $for = $_GET['for'];
+        $filename = explode('/', $for)[1];
+
+        header('Content-Type: application/zip');
+        header('Content-Disposition: attachment; filename="'.$filename.'.zip"');
+
+        $path = __DIR__ . "/../public/storage/{$for}";
+        $tmp_name = __DIR__ . '/a.zip';
+        $this->zip($path, $tmp_name);
+        echo file_get_contents($tmp_name, true);
+        unlink($tmp_name);
     }
 }
