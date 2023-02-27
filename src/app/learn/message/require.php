@@ -18,5 +18,5 @@ return [
     <p>この様にHTMLを読み込むことができます、今回は&lt;head&gt;を読み込みましたが他にも&lt;nav&gt;や&lt;footer&gt;などを読み込むことがよくあります</p>
     SUCCESS_MESSAGE,
 
-    "next_path" => "./while",
+    "next_path" => "../",
 ];
