@@ -4,6 +4,7 @@ use Controller\Top;
 use Controller\Learn;
 use Controller\Login;
 use Controller\Free;
+use Controller\Search;
 
 $request_path = require(__DIR__ . '/route.php');
 $method = $_SERVER['REQUEST_METHOD'];
@@ -35,7 +36,8 @@ return match ([$request_path, $method]) {
 
     ['/free/download', 'GET']    => [Free::class, 'download'],
 
-        
+    // ['/search', 'GET']           => [Free::class, 'show_top'],
+    ['/search', 'GET']           => [Search::class, 'search'],
 
 
     ['/login', 'GET']           => [Login::class, 'login'],

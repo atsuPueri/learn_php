@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./public/css/destyle.css">
+    <link rel="stylesheet" href="./public/css/header.css">
+    <style>
+        div {
+            width: 25%;
+        }
+        div a {
+            display: block;
+            z-index: 100;
+            text-align: center;
+            border: solid 1px black;
+            border-radius: 16px;
+            background-color: rgb(208, 250, 209);
+            width: 75%;
+            margin: 0 auto;
+        }
+
+        iframe {
+            width: 100%;
+            border: solid 1px black;
+        }
+    </style>
+</head>
+
+<body>
+    <?php Util\view('header.html'); ?>
+    <?php foreach (glob(__DIR__ . '/../storage/1/*') as $val) : ?>
+        <?php
+        $ex = explode('/', $val);
+        $val = $ex[count($ex) - 1];
+        ?>
+
+        <div>
+            <iframe src="http://localhost/github/learn_php/src/public/storage/1/<?= $val ?>"></iframe>
+            <a href="http://localhost/github/learn_php/src/public/storage/1/<?= $val ?>">
+                <?= $val ?>
+            </a>
+        </div>
+    <?php endforeach; ?>
+</body>
+
+</html>
